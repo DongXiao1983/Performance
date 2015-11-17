@@ -32,7 +32,13 @@ CPUs
 
 
 2 Achitecture  
-	Hardware  
+	Hardware: Processor ( P-cache, W-cache, Clock, Timestamp counter , Microcode Rom, Temperature senseors, Network interfaces )  
+	CPU Cache:   
+		Level instrauction chace(I$)     
+		Lever1 data cache(D$)    
+		Translation lookaside buffer(TLB)   
+		Level 2 cache (E$)   
+		
 	
   
 
