@@ -86,4 +86,9 @@ Secheduling Classes
 &emsp;" Hyper-Threading Aeware Process Scheduling Heuristics" USENIX,2005   
 &emsp;"Solaris Performance and Tools: DTrace and MDB Techiques for Solaris 10 and open Solaris."
 
+Idle Thread   
+NUMA Grouping:  making the kernel NUMA-aware, make better scheduling and
+memory placement decisions
+Tools:  [http://minnie.tuhs.org/cgi-bin/utree.pl?file=V4](http://minnie.tuhs.org/cgi-bin/utree.pl?file=V4)
+
 &emsp;
