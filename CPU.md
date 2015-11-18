@@ -33,12 +33,30 @@ CPUs
 
 2 Achitecture  
 	Hardware: Processor ( P-cache, W-cache, Clock, Timestamp counter , Microcode Rom, Temperature senseors, Network interfaces )  
-	CPU Cache:   
-		Level instrauction chace(I$)     
-		Lever1 data cache(D$)    
-		Translation lookaside buffer(TLB)   
-		Level 2 cache (E$)   
-		
-	
-  
+	CPU Cache:  
 
+	Level instrauction chace(I$)     
+	Level data cache(D$)    
+	Translation lookaside buffer(TLB)   
+	Level 2 cache (E$)   
+	Level 3 cache  
+
+
+Associativity:  Fully, Direct mapped , Set  
+Cache line  
+Cache Coherency   
+MMU    
+Interconnects : UMA  NUMA   
+	   CPU Performance Counters:  
+
+	CPU cycles: including stall cycles and types of stall cycles   
+	CPU instrauctions: retired (executed )   
+	Level 1,2,3 chace accesses: hits, miss   
+	Floating-point unit: operations    
+	Memory I/O: reads , writes, stall cycles   
+	Resource I/O: reads, writes, stall cycles   
+
+ 
+  CPU计数器  Unit Mask 
+
+&emsp;
