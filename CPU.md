@@ -118,19 +118,25 @@ tatic analysis
 - **perf/dtrace/stap/oprofile**:
 - **perf/cpustat**:
 
-####3.2 Tools Method  
-对每个CPU主要检查这三项目：
-   
-	Utilization：CPU在非空闲线程上的忙碌时间
-	Saturation： CPU上跑的进程队列的等待时间
-	Errors：  
-
 ####3.3 Workload characterizaion
-基本CPU workload的指标：   
+Basic checklist：   
 
-	Load averages ( utilization + saturation )
-	User-time to system-time ratio
-	Syscall rate
-	Voluntary context switch rate
-	Interrupt rate
+- Load averages ( utilization + saturation )
+- User-time to system-time ratio
+- Syscall rate
+- Voluntary context switch rate
+- Interrupt rate
+
+Advanced checklist:  
+
+- What is the CPU utilization system-wide? Per CPU?
+- How parallel is the CPU load? Is it single-threaded? How many threads?
+- Which applications or users are using the CPUs? How much?
+- Which kernel threads are using the CPUs? How much?
+- What is the CPU usage of interrupts?
+- What is the CPU interconnect utilization?
+- Why are the CPUs being used (userand kernel-level call paths)?
+- What types of stall cycles are encountered?  
+- 
+
 
