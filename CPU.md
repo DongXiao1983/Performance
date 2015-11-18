@@ -137,6 +137,8 @@ Advanced checklist:
 - What is the CPU interconnect utilization?
 - Why are the CPUs being used (userand kernel-level call paths)?
 - What types of stall cycles are encountered?  
-- 
+
+
+
 
 
