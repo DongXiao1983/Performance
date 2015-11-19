@@ -251,3 +251,25 @@ linux 也提供了cpuset的挂载修改
     # echo 7-10 > cpus # assign CPUs 7-10
     # echo 1 > cpu_exclusive # make prodset exclusive
     # echo 1159 > tasks # assign PID 1159 to prodset
+
+
+###6  Reference
+- [Red Hat Enterprise Linux 7 documnet](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/index.html)
+- Saltzer, J., and J. Gintell. “The Instrumentation of Multics,” Communications of the ACM, August 1970.
+- Bobrow, D., et al. “TENEX: A Paged Time Sharing System for the PDP-10*,” Communications of the ACM, March 1972.
+- Myer, T. H., J. R. Barnaby, and W. W. Plummer. TENEX Executive Manual. Bolt, Baranek and Newman, Inc., April 1973.
+- Hinnant, D. “Benchmarking UNIX Systems,” BYTE magazine 9, no. 8 (August 1984).
+- Bulpin, J., and I. Pratt. “Hyper-Threading Aware Process Scheduling Heuristics,” USENIX, 2005.
+- McDougall, R., J. Mauro, and B. Gregg. Solaris Performance and Tools: DTrace and MDB Techniques for Solaris 10 and OpenSolaris.Prentice Hall, 2006.
+- Otto, E. Temperature-Aware Operating System Scheduling (Thesis). University of Virginia, 2006.
+- Ruggiero, J. Measuring Cache and Memory Latency and CPU to Memory Bandwidth. Intel (Whitepaper), 2008.
+- An Introduction to the Intel QuickPath Interconnect. Intel, 2009.
+- Intel 64 and IA-32 Architectures Software Developer’s Manual, Combined Volumes 1, 2A, 2B, 2C, 3A, 3B, and 3C. Intel, 2012.
+- Intel 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B, System Programming Guide, Part 2. Intel, 2013.
+- [TENEX Load Averages for July 1973, August 1973]( http://tools.ietf.org/html/rfc546 "TENEX Load Averages for July 1973, August 1973.")
+- [http://lwn.net/Articles/178253/](http://lwn.net/Articles/178253/ "http://lwn.net/Articles/178253/")
+- [http://www.bitmover.com/lmbench/](http://www.bitmover.com/lmbench/ "www.bitmover.com/lmbench/")
+- [http://minnie.tuhs.org/cgi-bin/utree.pl?file=V4](http://minnie.tuhs.org/cgi-bin/utree.pl?file=V4 "http://minnie.tuhs.org/cgi-bin/utree.pl?file=V4")
+- [https://perf.wiki.kernel.org/index.php/Tutorial](https://perf.wiki.kernel.org/index.php/Tutorial "https://perf.wiki.kernel.org/index.php/Tutorial")
+- [www.eece.maine.edu/~vweaver/projects/perf_events](www.eece.maine.edu/~vweaver/projects/perf_events "www.eece.maine.edu/~vweaver/projects/perf_events")
+- [http://valgrind.org/docs/manual/](http://valgrind.org/docs/manual/ "http://valgrind.org/docs/manual/")
