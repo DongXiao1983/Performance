@@ -183,15 +183,15 @@ Advanced checklist:
 
 ###4  Analysis
 
-<tr>   <td>`uptime` </td>   <td>load averages</td></tr> 
-<tr>   <td>`vmstat` </td>   <td>includes system-wide CPU averages</td></tr> 
-<tr>   <td>`mpsta`t </td>   <td>per-CPU statistics</td></tr> 
-<tr>   <td>`sar` </td>   <td>historical statistics</td></tr> 
-<tr>   <td>`ps`  </td>   <td>process status</td></tr> 
-<tr>   <td>`top`  </td>   <td>monitor per-process/thread CPU usage</td></tr> 
-<tr>   <td>`pidstat`   </td>   <td>per-process/thread CPU breakdowns</td></tr> 
-<tr>   <td>`time`  </td>   <td>process status</td></tr> 
-<tr>   <td>`DTrace/perf`  &emsp;</td>   <td>CPU profiling & trace</td></tr> 
+<tr>   <td>`uptime` </td>   <td>load averages  </td></tr>     
+<tr>   <td>`vmstat` </td>   <td>includes system-wide CPU averages  </td></tr>    
+<tr>   <td>`mpsta`t </td>   <td>per-CPU statistics  </td></tr>    
+<tr>   <td>`sar` </td>   <td>historical statistics   </td></tr>    
+<tr>   <td>`ps`  </td>   <td>process status   </td></tr>    
+<tr>   <td>`top`  </td>   <td>monitor per-process/thread CPU usage  </td></tr>    
+<tr>   <td>`pidstat`   </td>   <td>per-process/thread CPU breakdowns  </td></tr>    
+<tr>   <td>`time`  </td>   <td>process status   </td></tr>    
+<tr>   <td>`DTrace/perf`  &emsp;</td>   <td>CPU profiling & trace  </td></tr>   
 ###5  Tuning
 目标1, 识别出CPU不需要的的消耗  
 目标2, binding CPU
