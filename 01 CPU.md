@@ -273,3 +273,4 @@ linux 也提供了cpuset的挂载修改
 - [https://perf.wiki.kernel.org/index.php/Tutorial](https://perf.wiki.kernel.org/index.php/Tutorial "https://perf.wiki.kernel.org/index.php/Tutorial")
 - [www.eece.maine.edu/~vweaver/projects/perf_events](www.eece.maine.edu/~vweaver/projects/perf_events "www.eece.maine.edu/~vweaver/projects/perf_events")
 - [http://valgrind.org/docs/manual/](http://valgrind.org/docs/manual/ "http://valgrind.org/docs/manual/")
+http://dbanotes.net/database/numa.html
