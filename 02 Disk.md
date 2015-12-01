@@ -157,3 +157,167 @@ custom details for those commands).
 
 ####4.1 iostat
 summarizes per-disk I/O statistics.
+
+	compute-1:~$ iostat -xkdz 1
+	Linux 3.10.84-ovp-rt89-r5_preempt-rt (compute-1)12/01/15   _x86_64_  (48 CPU)
+	Device: rrqm/s  wrqm/s r/s    w/s  rkB/s  wkB/s avgrq-sz avgqu-sz await r_await w_await  svctm  %util  
+	sdb     0.00   0.00  0.00   45.00  0.00   224.00   9.96   0.02     0.64  0.00    0.64   0.20   0.90  
+	sda     0.00   8.00  0.00    3.00  0.00    44.00  29.33   0.00     0.00  0.00    0.00   0.00   0.00  
+	dm-1    0.00   0.00  0.00    2.00  0.00    20.00  20.00   0.00     0.00  0.00    0.00   0.00   0.00  
+	dm-7    0.00   0.00  0.00   41.00  0.00   188.00   9.17   0.03     0.83  0.00    0.83   0.22   0.90   
+	dm-3    0.00   0.00  0.00    2.00  0.00    16.00  16.00   0.00     0.00  0.00    0.00   0.00   0.00  
+	sdd     0.00   0.00  0.00    4.00  0.00    20.00  10.00   0.00     1.00  0.00    1.00   0.50   0.20  
+
+- **rrqm/s**:  read requests placed on the driver request queue and merged per second  
+- **wrqm/s**:  write requests placed on the driver request queue and merged per second  
+- **r/s**:     read requests issued to the disk device per second  
+- **w/s**:     write requests issued to the disk device per second  
+- **rkB/s**:   kilobytes read from the disk device per second  
+- **wkB/s**: kilobytes written to the disk device per second  
+- **avgrq-sz**: average request size in sectors (512 bytes)  
+- **avgqu-sz**: average number of requests both waiting in the driver request queue and active on the device  
+- **await**: average I/O response time, including time waiting in the driver request queue and the I/O response time of the device (ms)  
+- **r_await**: same as await, but for reads only (ms)  
+- **w_await**: same as await, but for writes only (ms)  
+- **svctm**: average (inferred) I/O response time for the disk device (ms)  
+- **%util**: percent of time the device was busy processing I/O requests (utilization)    
+
+####4.2 sar
+system activity reporter   
+
+	[root@intel-controller ~(keystone_admin)]# sar -d 1   
+	Linux 3.10.0-123.el7.x86_64 (intel-controller)  12/01/2015  _x86_64_(40 CPU)
+	
+	04:36:24 AM     DEV     tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz await svctm   %util  
+	04:36:25 AM    dev8-0  0.00    0.00      0.00      0.00       0.00  0.00    0.00   0.00
+	04:36:25 AM   dev8-32  0.00    0.00      0.00      0.00       0.00  0.00    0.00   0.00   
+	04:36:25 AM   dev8-48  0.00    0.00      0.00      0.00       0.00  0.00    0.00   0.00   
+	04:36:25 AM   dev8-16  2.00    0.00     16.00      8.00       0.01  7.00    7.00   1.40   
+	04:36:25 AM  dev253-0  2.00    0.00     16.00      8.00       0.01  7.00    7.00   1.40   
+	04:36:25 AM  dev253-1  0.00    0.00      0.00      0.00       0.00  0.00    0.00   0.00   
+
+####4.3 pidstat
+   prints CPU usage by default and includes a -d option for disk I/O statistics.    
+	
+	[root@intel-controller ~(keystone_admin)]# pidstat
+	Linux 3.10.0-123.el7.x86_64 (intel-controller)  12/01/2015  _x86_64_(40 CPU)
+	
+	04:38:43 AM   UID   PID   %usr %system  %guest   %CPU   CPU  Command
+	04:38:43 AM    0      1   0.00    0.00    0.00   0.01    17  systemd
+	04:38:43 AM    0      2   0.00    0.00    0.00   0.00    13  kthreadd
+	04:38:43 AM    0      3   0.00    0.00    0.00   0.00     0  ksoftirqd/0
+	04:38:43 AM    0      8   0.00    0.00    0.00   0.00     0  migration/0
+	04:38:43 AM    0    250   0.00    0.25    0.00   0.25    12  rcu_sched
+	04:38:43 AM    0    251   0.00    0.01    0.00   0.01     2  rcuos/0
+	04:38:43 AM    0    252   0.00    0.01    0.00   0.01    14  rcuos/1
+	04:38:43 AM    0    253   0.00    0.02    0.00   0.02     6  rcuos/2
+
+####4.4 Dtrace 
+don't used ......... *_*
+
+####4.5 SystemTap
+####4.6 perf
+####4.7 iotop
+####4.8 smartctl
+
+	[root@intel-controller ~(keystone_admin)]# smartctl -a  /dev/sdb
+	smartctl 6.2 2013-07-26 r3841 [x86_64-linux-3.10.0-123.el7.x86_64] (local build)
+	Copyright (C) 2002-13, Bruce Allen, Christian Franke, www.smartmontools.org
+	
+	=== START OF INFORMATION SECTION ===
+	Model Family: HP 500GB SATA disk MM0500EANCR
+	Device Model: MM0500EANCR
+	Serial Number:9SP11MRZ
+	LU WWN Device Id: 5 000c50 015378d79
+	Firmware Version: HPG1
+	User Capacity:500,107,862,016 bytes [500 GB]
+	Sector Size:  512 bytes logical/physical
+	Rotation Rate:7200 rpm
+	Device is:In smartctl database [for details use: -P show]
+	ATA Version is:   ATA8-ACS T13/1699-D revision 6
+	SATA Version is:  SATA 2.6, 3.0 Gb/s
+	Local Time is:Tue Dec  1 05:22:19 2015 EET
+	SMART support is: Available - device has SMART capability.
+	SMART support is: Enabled
+	
+	=== START OF READ SMART DATA SECTION ===
+	SMART overall-health self-assessment test result: PASSED
+	
+	General SMART Values:
+	Offline data collection status:  (0x82) Offline data collection activity
+	was completed without error.
+	Auto Offline Data Collection: Enabled.
+	Self-test execution status:  (   0) The previous self-test routine completed
+	without error or no self-test has ever
+	been run.
+	Total time to complete Offline
+	data collection:(  659) seconds.
+	Offline data collection
+	capabilities:(0x7b) SMART execute Offline immediate.
+	Auto Offline data collection on/off support.
+	Suspend Offline collection upon new
+	command.
+	Offline surface scan supported.
+	Self-test supported.
+	Conveyance Self-test supported.
+	Selective Self-test supported.
+	SMART capabilities:(0x0003) Saves SMART data before entering
+	power-saving mode.
+	Supports SMART auto save timer.
+	Error logging capability:(0x01) Error logging supported.
+	General Purpose Logging supported.
+	Short self-test routine
+	recommended polling time:(   2) minutes.
+	Extended self-test routine
+	recommended polling time:( 123) minutes.
+	Conveyance self-test routine
+	recommended polling time:(   3) minutes.
+	SCT capabilities:  (0x103f) SCT Status supported.
+	SCT Error Recovery Control supported.
+	SCT Feature Control supported.
+	SCT Data Table supported.
+	
+	SMART Attributes Data Structure revision number: 10
+	Vendor Specific SMART Attributes with Thresholds:
+	ID# ATTRIBUTE_NAME           FLAG   VALUE WORST  THRESH    TYPE  UPDATED  WHEN_FAILED RAW_VALUE
+	  1 Raw_Read_Error_Rate     0x000f   082   063   044    Pre-fail  Always   -   200649535
+	  3 Spin_Up_Time            0x0003   100   100   000    Pre-fail  Always   -   0
+	  4 Start_Stop_Count        0x0032   100   100   020    Old_age   Always   -   137
+	  5 Reallocated_Sector_Ct   0x0033   100   100   036    Pre-fail  Always   -   10
+	  7 Seek_Error_Rate         0x000f   087   060   030    Pre-fail  Always   -   24497902392 
+	  9 Power_On_Hours          0x0032   043   043   000    Old_age   Always   -   50364
+	 10 Spin_Retry_Count        0x0013   100   100   097    Pre-fail  Always   -   0
+	 12 Power_Cycle_Count       0x0032   100   100   020    Old_age   Always   -   138
+	180 Unknown_HDD_Attribute   0x003b   100   100   030    Pre-fail  Always   -   1167995224
+	184 End-to-End_Error        0x0032   100   100   003    Old_age   Always   -   0
+	187 Reported_Uncorrect      0x0032   100   100   000    Old_age   Always   -   0
+	188 Command_Timeout         0x0032   100   081   000    Old_age   Always   -   60130469058
+	189 High_Fly_Writes         0x003a   087   087   000    Old_age   Always   -   13
+	190 Airflow_Temperature_Cel 0x0022   073   047   045    Old_age   Always   -   27 (Min/Max 26/29)
+	191 G-Sense_Error_Rate      0x0032   100   100   000    Old_age   Always   -   0
+	192 Power-Off_Retract_Count 0x0032   100   100   000    Old_age   Always   -   137
+	193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always   -   138
+	194 Temperature_Celsius     0x0022   027   053   000    Old_age   Always   -   27 (0 14 0 0 0)
+	195 Hardware_ECC_Recovered  0x001a   030   024   000    Old_age   Always   -   200649535
+	196 Reallocated_Event_Count 0x0033   100   100   036    Pre-fail  Always   -   10
+	197 Current_Pending_Sector  0x0012   100   100   000    Old_age   Always   -   0
+	198 Offline_Uncorrectable   0x0010   100   100   000    Old_age   Offline  -   0
+	199 UDMA_CRC_Error_Count    0x003e   200   200   000    Old_age   Always   -   1
+	
+	SMART Error Log Version: 1
+	No Errors Logged
+	
+	SMART Self-test log structure revision number 1
+	No self-tests have been logged.  [To run self-tests, use: smartctl -t]
+	
+	
+	SMART Selective self-test log data structure revision number 1
+	 SPAN  MIN_LBA  MAX_LBA  CURRENT_TEST_STATUS
+	100  Not_testing
+	200  Not_testing
+	300  Not_testing
+	400  Not_testing
+	500  Not_testing
+	Selective self-test flags (0x0):
+	  After scanning selected spans, do NOT read-scan remainder of disk.
+	If Selective self-test is pending on power-up, resume after 0 minute delay.
