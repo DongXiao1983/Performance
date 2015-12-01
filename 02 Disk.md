@@ -321,3 +321,94 @@ don't used ......... *_*
 	Selective self-test flags (0x0):
 	  After scanning selected spans, do NOT read-scan remainder of disk.
 	If Selective self-test is pending on power-up, resume after 0 minute delay.
+
+
+###5 Experimentation
+  using these tools, it’s a good idea to leave iostat(1) continually running so that any result can be immediately double-checked.   
+
+**dd**  
+
+    controller-0:~$ sudo dd if=/dev/sda1 of=/dev/null bs=1024k count=1k
+    Password:
+    1+0 records in
+    1+0 records out
+    1048576 bytes (1.0 MB) copied, 0.00225314 s, 465 MB/s
+
+**raw**  可以用来创建字符设备 /dev/raw. 
+ 
+**hdparm**  
+
+    controller-0:~$ sudo hdparm -Tt /dev/sdb
+    
+    /dev/sdb:
+     Timing cached reads:   11902 MB in  2.00 seconds = 5957.06 MB/sec
+     Timing buffered disk reads: 1132 MB in  3.00 seconds = 377.06 MB/sec
+    
+写入时 *avgqu-sz* 和 *await* 会增加   
+
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.0022.000.00   15.00 0.00   156.0020.80 0.000.000.000.00   0.00   0.00
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 36060.000.00  293.00 0.00 138684.00   946.65 2.137.020.007.02   0.54  15.90
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 168874.000.00 1463.00 0.00 666388.00   910.9919.10   12.420.00   12.42   0.59  86.50
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 91729.000.00  780.00 0.00 391972.00  1005.06 7.58   11.030.00   11.03   0.64  49.70
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 121945.000.00  941.00 0.00 475804.00  1011.27 9.388.710.008.71   0.67  62.60
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 145568.000.00 1053.00 0.00 537716.00  1021.3078.17   63.720.00   63.72   0.87  91.80
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 98145.000.00  870.00 0.00 395916.00   910.15   140.74  164.110.00  164.11   1.15 100.00
+    
+    Device: rrqm/s   wrqm/s r/s w/srkB/swkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+    sda   0.00 102841.000.00  827.00 0.00 410860.00   993.62   140.63  169.540.00  169.54   1.21 100.00  
+    
+###6 Tuning
+
+**ionice**  
+
+- **0, none**: no class specified, so the kernel will pick a default—best effort, with a priority based on the process nice value.  
+- **1, real-time**: highest-priority access to the disk. If misused, this can starve other processes (just like the RT CPU scheduling class).  
+- **2, best effort**: default scheduling class, supporting priorities 0–7, with 0 the highest.  
+- **3, idle**: disk I/O allowed only after a grace period of disk idleness.  
+
+Example operating system tunables    
+/sys/block/sda/queue/scheduler (Linux)   
+
+### 7 References
+[Patterson 88]
+Patterson, D., G. Gibson, and R. Kats. “A Case for Redundant Arrays of Inexpensive Disks.” ACM SIGMOD, 1988.   
+[Bovet 05]
+Bovet, D., and M. Cesati. Understanding the Linux Kernel, 3rd Edition. O’Reilly, 2005.   
+[McDougall 06b]
+McDougall, R., J. Mauro, and B. Gregg. Solaris Performance and Tools: DTrace and MDB Techniques for Solaris 10 and OpenSolaris.
+Prentice Hall, 2006.   
+[Gregg 10b]
+Gregg, B. “Visualizing System Latency,” Communications of the ACM, July 2010.   
+[Love 10]
+Love, R. Linux Kernel Development, 3rd Edition. Addison-Wesley, 2010.   
+[Turner 10]
+Turner, J. “Effects of Data Center Vibration on Compute System Performance.” USENIX, SustainIT’10.   
+[Gregg 11]
+Gregg, B., and J. Mauro. DTrace: Dynamic Tracing in Oracle Solaris, Mac OS X and FreeBSD. Prentice Hall, 2011.   
+[Cornwell 12]
+Cornwell, M. “Anatomy of a Solid-State Drive,” Communications of the ACM, December 2012.   
+[Leventhal 13]
+Leventhal, A. “A File System All Its Own,” ACM Queue, March 2013.   
+[1]
+www.youtube.com/watch?v=tDacjrSCeq4   
+[2]
+http://lwn.net/Articles/332839   
+[3]
+http://sourceware.org/systemtap/wiki/WSiostatSCSI   
+[4]
+www.dtracebook.com   
+[5]
+http://guichaz.free.fr/iotop   
