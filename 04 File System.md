@@ -17,16 +17,30 @@
 
 ###2 Concepts
 
-File System Latency    
-Caching  
+**File System Latency**   
+
+**Caching**  
+
+   
+- **Page cache**:  operating system page cache  
+- **File system primary cache**: ZFS ARC  
+- **File system secondary cache**: ZFS L2ARC  
+- **Directory cache**: directory cache, DNLC  
+- **inode cache**:   inode cache  
+- **Device cache**:   ZFS vdev   
+- **Block device ache**:  buffer cache  
+
 Random versus Sequential I/O  
 Prefetch   
 Read-Ahead   
 Write-Back Caching   
-Synchronous Writes   
-Raw and Direct I/O   
+Synchronous Writes : Individual Synchronous Writes ,  SynchronouslyCommitting Previous Writes    
+Raw and Direct I/O : Raw I/O ,  Direct I/O    
 Non-Blocking I/O  
 Memory-Mapped Files   
 Metadata   
-Logical versus Physical I/O   
+Logical versus Physical I/O    
+Special File Systems  
 
+
+###3 Architecture
