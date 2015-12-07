@@ -180,3 +180,37 @@ For Linux, the container groups (cgroups) memory subsystem provides various addi
 - **memory.limit\_in_bytes**: the maximum allowed user memory, including file cache usage, in bytes   
 - **memory.swappiness**: similar to vm.swappiness described earlier but can be set for a cgroup    
 - **memory.oom_control**: can be set to 0, to allow the OOM killer for this cgroup, or 1, to disable it  
+
+###6 References  
+[Corbató 68]
+Corbató, F. J. A Paging Experiment with the Multics System. MIT Project MAC Report MAC-M-384, 1968.  
+[Denning 70]
+Denning, P. “Virtual Memory,” ACM Computing Surveys (CSUR) 2, no. 3 (1970).  
+[Peterson 77]
+Peterson, J., and T. Norman. “Buddy Systems,” Communications of the ACM, 1977.  
+[Thompson 78]
+Thompson, K. UNIX Implementation. Bell Laboratories, 1978.  
+[Babaoglu 79]
+Babaoglu, O., W. Joy, and J. Porcar. Design and Implementation of the Berkeley Virtual Memory Extensions to the UNIX Operating System. Computer Science Division, Department of Electrical Engineering and Computer Science, University of California, Berkeley, 1979.  
+[Bach 86]
+Bach, M. J. The Design of the UNIX Operating System. Prentice Hall, 1986.  
+[Bonwick 94]
+Bonwick, J. “The Slab Allocator: An Object-Caching Kernel Memory Allocator.” USENIX, 1994.  
+[Vahalia 96]
+Vahalia, U. UNIX Internals: The NewFrontiers. Prentice Hall, 1996.  
+[Bonwick 01]
+Bonwick, J., and J. Adams. “Magazines and Vmem: Extending the Slab Allocator to Many CPUs and Arbitrary Resources.” USENIX, 2001.  
+[Gorman 04]
+Gorman, M. Understanding the Linux Virtual Memory Manager. Prentice Hall, 2004.  
+[McDougall 06a]
+McDougall, R., and J. Mauro. Solaris Internals: Solaris 10 and OpenSolaris Kernel Architecture. Prentice Hall, 2006.    
+[McDougall 06b]
+McDougall, R., J. Mauro, and B. Gregg. Solaris Performance and Tools: DTrace and MDB Techniques for Solaris 10 and OpenSolaris.Prentice Hall, 2006.    
+[Intel 12]
+Intel 64 and IA-32 Architectures Software Developer’s Manual, Combined Volumes: 1, 2A, 2B, 2C, 3A, 3B and 3C. Intel, 2012.  
+[1] [http://lwn.net/Articles/83588/](http://lwn.net/Articles/83588/), 2004  
+[2] [http://lwn.net/Articles/229096/,](http://lwn.net/Articles/229096/,) 2007  
+[3] [http://valgrind.org/docs/manual/](http://valgrind.org/docs/manual/), 2012  
+[4] [http://lwn.net/Articles/375096/](http://lwn.net/Articles/375096/), 2010  
+[5] [http://lwn.net/Articles/423584/](http://lwn.net/Articles/423584/), 2011  
+
