@@ -151,5 +151,32 @@ The slab statistics are from **/proc/slabinfo** and can also be printed using **
 - **/proc/buddyinfo**: statistics for the kernel buddy allocator for pages.
 
 ###5 Tuning
-Various memory tunable parameters are described in the kernel source documentation in Documentation/sysctl/vm.txt and can be set using **sysctl(8)**  
+Various memory tunable parameters are described in the kernel source documentation in **Documentation/sysctl/vm.txt** and can be set using **sysctl(8)**  
 
+Multiple Page Sizes:    
+larger page,  see **Documentation/vm/hugetlbpage.txt**.  
+  
+
+	[root@heaven /usr/src/kernels]# echo 50 >  /proc/sys/vm/nr_hugepages
+	[root@heaven /usr/src/kernels]# grep Huge /proc/meminfo
+	AnonHugePages:575488 kB
+	HugePages_Total:  50
+	HugePages_Free:   50
+	HugePages_Rsvd:    0
+	HugePages_Surp:    0
+	Hugepagesize:   2048 kB
+    
+    [root@heaven /usr/src/kernels]# mkdir /mnt/hugetlbfs
+    [root@heaven /usr/src/kernels]# mount -t hugetlbfs none /mnt/hugetlbfs -o pagesize=2048K
+
+
+Resource Controls  
+
+Basic resource controls, including setting a main memory limit and a virtual memory limit, may be available using **ulimit(1)**.   
+
+For Linux, the container groups (cgroups) memory subsystem provides various additional controls. These include     
+
+- **memory.memsw.limit\_in_bytes**: the maximum allowed memory and swap space, in bytes   
+- **memory.limit\_in_bytes**: the maximum allowed user memory, including file cache usage, in bytes   
+- **memory.swappiness**: similar to vm.swappiness described earlier but can be set for a cgroup    
+- **memory.oom_control**: can be set to 0, to allow the OOM killer for this cgroup, or 1, to disable it  
