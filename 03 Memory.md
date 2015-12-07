@@ -9,7 +9,7 @@
 - **Address space**: a memory context. There are virtual address spaces for each process, and for the kernel.   
 - **Segment**: an area of memory flagged for a particular purpose, such as for storing executable or writeable pages.   
 - **OOM**: out of memory, when the kernel detects low available memory.   
-- **Page**: a unit of memory, as used by the OS and CPUs. Historically it is either 4 or 8 Kbytes. Modern processors have multiple page size support for larger sizes.   
+- **Page**: a unit of memory, as used by the OS and CPUs. Historically it is either 4 or 8 Kbytes. Modern processors have multiple page size support for larger sizes.     
 - **Page fault**: an invalid memory access. These are normal occurrences when using on-demand virtual memory.   
 - **Paging**: the transfer of pages between main memory and the storage devices.   
 - **Swapping**: From Unix, this is the transfer of entire processes between main memory and the swap devices. Linux often uses swapping to refer to paging to the swap device (the transfer of swap pages). In this book the original definition is used: swapping is for entire processes.  
