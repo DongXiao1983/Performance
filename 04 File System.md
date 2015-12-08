@@ -61,8 +61,8 @@ Special File Systems
 **Page Cache**:  
 
 - After an interval  
-- The sync(), fsync() , or msync() system calls  
-- Too many dirty pages(dirty_ratio)  
+- The sync(), fsync() , or msync() system calls    
+- Too many dirty pages(dirty_ratio)   
 - No available pages in the page cache  
 
    kswapd,find and schedule dirty pages to be writeen to disk. the kswapd and flush threads are visible as kernel tasks for OS performance tools.  
@@ -108,3 +108,93 @@ btrfs
 ###4 Methodology
 ####4.1  Latency Analysis
   latency analysis, begin by measuring the latency of file system operations. This should include all object operations, not just I/O (e.g., include `sync()`).
+  
+    operation latency = time (operation completion) - time (operation request)  
+
+  Analyzie Layer:
+Application:      
+Syscal interface:     
+VFS:  VFS traces all file system types.  
+Top of file system:   
+
+Transaction Cost   
+
+    percent time in file system = 100 * total blocking file system latency/application transaction time   
+
+####4.2  Workload Characterization
+
+- Operation rate and operation types
+- File I/O throughput
+- File I/O size
+- Read/write ratio
+- Synchronous write ratio
+- Random versus sequential file offset access  
+
+**Advanced Workload Characterization/Checklist**   
+
+- What is the file system cache hit ratio? Miss rate?
+- What are the file system cache capacity and current usage?  
+- What other caches are present (directory, inode, buffer) and what are their statistics?  
+- Which applications or users are using the file system?
+- What files and directories are being accessed? Created and deleted?
+- Have any errors been encountered? Was this due to invalid requests, or issues from the file system?
+- Why is file system I/O issued (user-level call path)?
+- To what degree is the file system I/O application synchronous?
+What is the distribution of I/O arrival times?
+
+**Performance Characterization**  
+  
+- What is the average file system operation latency?
+- Are there any high-latency outliers?
+- What is the full distribution of operation latency?
+- Are system resource controls for file system or disk I/O present and active?
+
+####4.3  Event Tracing
+
+- File system type
+- File system mount point
+- Operation type: read, write, stat, open, close, mkdir, . . .
+- Operation size (if applicable): bytes
+- Operation start timestamp: when the operation was issued to the file system
+- Operation completion timestamp: when the file system completed the operation
+- Operation completion status: errors
+- Path name (if applicable)
+- Process ID
+- Application name  
+
+####4.4 Static Performance Tuning
+
+- How many file systems are mounted and actively used?
+- What is the file system record size?
+- Are access timestamps enabled?
+- What other file system options are enabled (compression, encryption, . . .)?
+- How has the file system cache been configured? Maximum size?
+- How have other caches (directory, inode, buffer) been configured?
+- Is a second-level cache present and in use?
+- How many storage devices are present and in use?
+- What is the storage device configuration? RAID?
+- Which file system types are used?
+- What is the version of the file system (or kernel)?
+- Are there file system bugs/patches that should be considered?
+- Are there resource controls in use for file system I/O?
+
+
+####4.5 Cache Tuning
+The kernel and file system may use many different caches, including a buffer cache, directory cache, inode cache, and file system (page) cache.  
+
+####4.6 Memory-Based File Systems
+**/tmp**  : The standard /tmp file system  
+
+####4.7 Micro-Benchmarking  
+
+- **Operation types**: the rate of reads, writes, and other file system operations
+- **I/O size**: 1 byte up to 1 Mbyte and larger
+- **File offset pattern**: random or sequential
+- **Random-access pattern**: uniform random or Pareto distribution
+- **Write type**: asynchronous or synchronous (O_SYNC)
+- **Working set size**: how well it fits in the file system cache
+- **Concurrency**: number of I/O in flight, or number of threads performing I/O
+- **Memory mapping**: file access via mmap(), instead of read()/write()
+- **Cache state**: whether the file system cache is “cold” (unpopulated) or “warm”
+- **File system tunables**: may include compression, data deduplication, and so on 
+
