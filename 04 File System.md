@@ -44,3 +44,7 @@ Special File Systems
 
 
 ###3 Architecture
+File System I/O stack  
+VFS(vNode)  
+File System Cache  
+![](https://software.intel.com/sites/default/files/managed/ba/58/vfs1.png)  
