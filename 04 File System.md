@@ -54,7 +54,7 @@ Special File Systems
 
 ####3.2 File System Cache
 
-![](http://www.haifux.org/lectures/119/linux-2.4-vfs/vfs_relations_static.png =100x20)   
+![](http://www.haifux.org/lectures/119/linux-2.4-vfs/vfs_relations_static.png)   
 
  
 **Buffer Cache**:   
