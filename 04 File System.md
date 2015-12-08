@@ -49,8 +49,14 @@ Special File Systems
 
 **File System I/O stack**  
 **VFS(vNode)**  
+
+![](https://software.intel.com/sites/default/files/managed/ba/58/vfs1.png)  
+
 ####3.2 File System Cache
-![](https://software.intel.com/sites/default/files/managed/ba/58/vfs1.png)   
+
+![](http://www.haifux.org/lectures/119/linux-2.4-vfs/vfs_relations_static.png)   
+
+ 
 **Buffer Cache**:   
 **Page Cache**:  
 
@@ -68,6 +74,8 @@ Special File Systems
   &nbsp;&nbsp;Performance has been further improved over the years, including with the read-copy-update-walk (RCU-walk) algorithm [1]. This attempts to walk the path name without updating dentry reference counts, which were causing scalability issues due to cache coherency with high rates on multi-CPU systems. If a dentry is encountered that isn’t in the cache, RCU-walk reverts to the slower reference-count walk (ref-walk), since  reference counts will be necessary during file system lookup and blocking. For busy workloads, it’s expected that the dentrys will likely be cached, and so the RCU-walk approach will succeed.  
   &nbsp;&nbsp;The Dcache also performs negative caching, which remembers lookups for nonexistent entries. This improves the performance of failed lookups, which commonly occur for library path lookup.  
   &nbsp;&nbsp;The Dcache grows dynamically, shrinking via LRU when the system needs more memory. Its size can be seen via /proc.   
+
+
 **Inode Cache**  
 
 ####3.2 File System Features 
@@ -95,4 +103,8 @@ btrfs
 **Stripe width:** matching this to the workload.   
 **Observability:** The virtual device utilization can be confusing; check the separate physical devices.   
 **CPU overhead:** especially when performing RAID parity computation. This has become less of an issue with modern, faster CPUs.   
-**Rebuilding:** Also called resilvering, this is when an empty disk is added to a RAID group (e.g., replacing a failed disk), and it is populated with the necessary data to join the group. This can significantly affect performance as it consumes I/O resources and may last for hours or even days.      
+**Rebuilding:** Also called resilvering, this is when an empty disk is added to a RAID group (e.g., replacing a failed disk), and it is populated with the necessary data to join the group. This can significantly affect performance as it consumes I/O resources and may last for hours or even days.  
+
+###4 Methodology
+####4.1  Latency Analysis
+  latency analysis, begin by measuring the latency of file system operations. This should include all object operations, not just I/O (e.g., include `sync()`).
