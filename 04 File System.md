@@ -54,7 +54,7 @@ Special File Systems
 
 ####3.2 File System Cache
 
-![](http://www.haifux.org/lectures/119/linux-2.4-vfs/vfs_relations_static.png)
+![](http://www.haifux.org/lectures/119/linux-2.4-vfs/vfs_relations_static.png =100x20)   
 
  
 **Buffer Cache**:   
@@ -198,3 +198,6 @@ The kernel and file system may use many different caches, including a buffer cac
 - **Cache state**: whether the file system cache is “cold” (unpopulated) or “warm”
 - **File system tunables**: may include compression, data deduplication, and so on 
 
+####4. Micro-Benchmarking  
+vfsstat
+fsstat
