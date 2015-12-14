@@ -1,4 +1,3 @@
-
 ##NUMA Balancing
 
 ###1 What's NUMA
@@ -71,6 +70,42 @@
 	-  After a NUMA fault, account the page location   
 	-  If the page was migrated, account the new location   
 -  Kept as a floating average    
+
+#### Types of NUMA faults
+
+- Locality   
+	- “Local fault” memory on same node as CPU
+	- “Remote fault” memory on different node than CPU
+- Private vs shared   
+	- “Private fault” memory accessed by same task twice in a row
+	- “Shared fault” memory accessed by different task than last time
+
+
+#### Task placement
+
+
+- Best place to run a task   
+   Where most of its memory accesses happen
+- Best place to run a task   
+   Where most of its memory accesses happen   
+- It is not that simple   
+	- Tasks may share memory  
+  Some private accesses, some shared accesses  
+  60% private, 40% shared is possible – group tasks together for best performance  
+	- Tasks with memory on the node may have more threads than can run in one node's CPU cores
+	- **Load balance may have spread threads across more physical CPUs**   <---- important !!!!!
+  Take advantage of more CPU cache
+
+
+- NUMA task placement may not create a load imbalance
+• The load balancer would move something else
+• Conflict can lead to tasks “bouncing around the system”
+• Bad locality
+• Lots of NUMA page migrations
+•NUMA task placement may
+• Swap tasks between nodes
+• Move a task to an idle CPU if no imbalance is created
+
 
 ###3 NUMA performance
 ###4 NUMA tuning
