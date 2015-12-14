@@ -20,7 +20,8 @@
 
 ### ECMP
 
-### VTP
+### VTP  
+
 http://www.definethecloud.net/vxlan-deep-dive/   
 http://www.definethecloud.net/vxlan-deep-divepart-2/   
 http://www.definethecloud.net/data-center-101-local-area-network-switching/   
