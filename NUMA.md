@@ -93,18 +93,48 @@
   Some private accesses, some shared accesses  
   60% private, 40% shared is possible – group tasks together for best performance  
 	- Tasks with memory on the node may have more threads than can run in one node's CPU cores
-	- **Load balance may have spread threads across more physical CPUs**   <---- important !!!!!
-  Take advantage of more CPU cache
+	- **Load balance may have spread threads across more physical CPUs**   <---- important !!!!!    
+  Take advantage of more CPU cache   
+
+#### Task placement constraints
+- NUMA task placement may not create a load imbalance    
+	- The load balancer would move something else   
+	- Conflict can lead to tasks “bouncing around the system”  
+      Bad locality  
+      Lots of NUMA page migrations  
+- NUMA task placement may
+	- Swap tasks between nodes
+	- Move a task to an idle CPU if no imbalance is created
+
+####  Task placement algorithm  
+For task A, check each NUMA node N
+1. Check whether node N is better than task A's current node (C)  
+  Task A has a larger fraction of memory accesses on node N, than on current node C  
+  Score is the difference of fractions  
+2. If so, check all CPUs on node N  
+   Is the current task (T) on CPU better off on node C?  
+   Is the CPU idle, and can we move task A to the CPU?  
+   Is the benefit of moving task A to node N larger than the downside of moving task T to node C?  
+3.For the CPU with the best score, move task A (and task T, to node C).
 
 
-- NUMA task placement may not create a load imbalance
-• The load balancer would move something else
-• Conflict can lead to tasks “bouncing around the system”
-• Bad locality
-• Lots of NUMA page migrations
-•NUMA task placement may
-• Swap tasks between nodes
-• Move a task to an idle CPU if no imbalance is created
+#### Task grouping
+- Multiple tasks can access the same memory  
+	- Threads in a large multi-threaded process (JVM, virtual machine, ...)
+	- Processes using shared memory segment (eg. Database)  
+- Use CPU num & pid in struct page to detect shared memory
+	- At NUMA fault time, check CPU where page was last faulted
+	- Group tasks together in numa_group, if PID matches
+- Grouping related tasks improves NUMA task placement
+	- Only group truly related tasks
+	- Only group on write faults, ignore shared libraries like libc.so  
+- Group stats are the sum of the NUMA fault stats for tasks in group
+- Task placement code similar to before
+- If a task belongs to a numa_group, use the numa_group stats for  comparison instead of the task stats
+	- Pulls groups together, for more efficient access to shared memory
+- When both compared tasks belong to the same numa_group
+	- Use task stats, since group numbers are the same
+	- Efficient placement of tasks within a group 
 
 
 ###3 NUMA performance
