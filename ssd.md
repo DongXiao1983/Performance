@@ -61,4 +61,4 @@ What matters the most here is to find how the SSD is performing while using D_SY
 [ceph-how-to-test-if-your-ssd-is-suitable-as-a-journal-device](http://www.sebastien-han.fr/blog/2014/10/10/ceph-how-to-test-if-your-ssd-is-suitable-as-a-journal-device/ "ceph-how-to-test-if-your-ssd-is-suitable-as-a-journal-device")
 
 
-
+[PCIe SSD](http://wenku.it168.com/d_001428570.shtml)
