@@ -43,3 +43,17 @@ awk 'BEGIN { format = "%-10s %s\n"
              printf format, "Name", "Number"
              printf format, "----", "------" }
            { printf format, $1, $2 }' mail-list
+
+
+
+    sub(/^[[:blank:]]*/,"",变量)  是去掉变量左边的空白符
+    sub(/[[:blank:]]*$/,"",变量) 是去掉变量右边的空白符
+    gsub(/[[:blank:]]*/,"",变量) 是去掉变量中所有的空白符
+
+    示例：
+    echo ' 123 456 789  ' | awk '{
+    print "<" $0 ">";
+    sub(/^[[:blank:]]*/,"",$0);print "[" $0 "]";
+    sub(/[[:blank:]]*$/,"",$0);print "|" $0 "|";
+    gsub(/[[:blank:]]*/,"",$0);print "/" $0 "/";
+    }'
