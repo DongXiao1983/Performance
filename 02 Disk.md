@@ -181,9 +181,9 @@ summarizes per-disk I/O statistics.
 - **w_await**: same as await, but for writes only (ms)  
 - **svctm**: average (inferred) I/O response time for the disk device (ms)  
 - **%util**: percent of time the device was busy processing I/O requests (utilization)    
-
+  
 ####4.2 sar
-system activity reporter   
+system activity reporter   , read from /proc
 
 	[root@intel-controller ~(keystone_admin)]# sar -d 1   
 	Linux 3.10.0-123.el7.x86_64 (intel-controller)  12/01/2015  _x86_64_(40 CPU)
